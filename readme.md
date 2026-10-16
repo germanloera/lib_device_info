@@ -2,7 +2,7 @@
 
 `lib_device_info` is a native C++ dynamic shared library (`cc_library_shared`) built for the Android Open Source Project (AOSP). It exposes utility APIs to query core Android system properties (release version, API level, model, and brand) and issue system notifications using native shell commands.
 
-> **Target Consumer:** This library is a direct dependency required by the [`hello_aosp`](../hello_aosp/) companion binary module.
+> **Target Consumer:** This library is a direct dependency required by the [`hello_aosp`](https://github.com/germanloera/hello_aosp) companion binary module.
 
 ---
 
@@ -10,14 +10,14 @@
 
 The library defines functions under the `info` namespace declared in `include/lib_device_info.h` and implemented in `src/lib_device_info.cpp`:
 
-| Function | Description | Underlying Mechanism |
-| :--- | :--- | :--- |
-| `GetProperty(string prop)` | Retrieves system properties with fallback `"-1"` | Calls `android::base::GetProperty` (`<android-base/properties.h>`) |
-| `PrintVersion()` | Outputs the Android release version to standard output | Reads system property `ro.build.version.release` |
-| `PrintAPI()` | Outputs the SDK API level | Reads system property `ro.build.version.sdk` |
-| `PrintModel()` | Outputs device model name | Reads system property `ro.product.model` |
-| `PrintBrand()` | Outputs manufacturer/product brand | Reads system property `ro.product.brand` |
-| `Notify()` | Posts a system tray notification | Invokes `cmd notification post` via standard `system()` execution |
+| Function                   | Description                                            | Underlying Mechanism                                               |
+| :------------------------- | :----------------------------------------------------- | :----------------------------------------------------------------- |
+| `GetProperty(string prop)` | Retrieves system properties with fallback `"-1"`       | Calls `android::base::GetProperty` (`<android-base/properties.h>`) |
+| `PrintVersion()`           | Outputs the Android release version to standard output | Reads system property `ro.build.version.release`                   |
+| `PrintAPI()`               | Outputs the SDK API level                              | Reads system property `ro.build.version.sdk`                       |
+| `PrintModel()`             | Outputs device model name                              | Reads system property `ro.product.model`                           |
+| `PrintBrand()`             | Outputs manufacturer/product brand                     | Reads system property `ro.product.brand`                           |
+| `Notify()`                 | Posts a system tray notification                       | Invokes `cmd notification post` via standard `system()` execution  |
 
 ---
 
@@ -35,9 +35,9 @@ lib_device_info/
 
 ### Build Definition Highlights (`Android.bp`)
 
-* **Target Type:** `cc_library_shared` — builds into `lib_device_info.so`.
-* **Exported Headers:** `export_include_dirs: ["include"]` allows consumers (such as `hello_aosp`) to include `<lib_device_info.h>` directly when adding `lib_device_info` to their `shared_libs`.
-* **Dependencies:** Relies on `libbase` and `liblog`.
+- **Target Type:** `cc_library_shared` — builds into `lib_device_info.so`.
+- **Exported Headers:** `export_include_dirs: ["include"]` allows consumers (such as `hello_aosp`) to include `<lib_device_info.h>` directly when adding `lib_device_info` to their `shared_libs`.
+- **Dependencies:** Relies on `libbase` and `liblog`.
 
 ---
 
