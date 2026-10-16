@@ -1,0 +1,11 @@
+cc_library_shared {
+    name: "lib_device_info",
+    srcs: ["src/lib_device_info.cpp"],
+    export_include_dirs: ["include"],
+    shared_libs: ["libbase",
+    "liblog"],
+    cflags: [
+        "-Wall",
+        "-Werror"
+    ],
+}
